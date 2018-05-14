@@ -1,4 +1,12 @@
+ 该项目测试源码是本人在 腾讯课堂 软谋教育Gerry老师的java课程源码整理，
+ 软谋官网：http://ruanmou.net/Default.aspx
+ 课程连接：https://ke.qq.com/user/index/index.html#sid=plan&cid=229547&term_id=100323617
  1 aJavaBasicsA   java基础第一阶段
- 1 aJavaBasicsB   java基础第二阶段
-    java常用类、反射，枚举，注解，内部类、异常和数组
-    
+ 2 aJavaBasicsB   java基础第二阶段
+   2.1  java常用类 aOften
+    2.1.1 常用类Object,String类详解:   aOften.aObjectStringDemo
+    2.1.2 常用类Math,StringBuffer,包装类，Date:  aOften.bMathStringBufferDemo
+
+    反射，枚举，注解，内部类、异常和数组
+ 3 bJavaSeniorA java语言进阶（一）
+ 4 bJavaSeniorA java语言进阶（二）
