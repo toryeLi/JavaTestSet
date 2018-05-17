@@ -19,4 +19,4 @@
     3.2.2 bUDP: udp协议socket编程
     3.2.1 socket基础及socket网络编程登录实现多客户端:bSocket.aSocketTest
    3.3 XML深入： cXmlTest
- 4 bJavaSeniorA  java语言进阶（二）
+ 4 bJavaSeniorB  java语言进阶（二）
