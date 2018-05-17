@@ -1,0 +1,51 @@
+----------------System--------------
+System类
+java.lang.Object
+    --java.lang.System
+public final class System extends Object
+System 类包含一些有用的类字段和方法，*它不能被实例化
+    在System类提供的设施中，有标准输入、标准输出和错误输出流：对外部定义的属性和环境变量的访问；
+    加载文件和库的方法；还有快速复制数组的一部分的实用方法。
+
+public static final InputStream in()
+  "标准"输入流。此流已打开并准备提供输入数据。
+  通常，此流对应于键盘输入或者由主机环境或用户指定的另一个输入源。
+public static final PrintStream out()
+  "标准"输出流。此流已打开并准备接受输出数据。
+  通常，此流对应于显示器输出或者由主机环境或用户指定的另一个输出目标。
+  对于简单杜丽的Java应用程序，编写一行输出数据的典型方式是：
+  System.out.println(data);
+  public static void gc()
+  	运行垃圾回收器。
+  	调用 gc 方法暗示着 Java 虚拟机做了一些努力来回收未用对象，以便能够快速地重用这些对象当前占用的内存。
+  	当控制权从方法调用中返回时，虚拟机已经尽最大努力从所有丢弃的对象中回收了空间。
+  		调用 System.gc() 实际上等效于调用：
+  	 Runtime.getRuntime().gc()
+  在Object类中
+  protected  void finalize()
+            当垃圾回收器确定不存在对该对象的更多引用时，由对象的垃圾回收器调用此方法。
+            子类重写 finalize 方法，以配置系统资源或执行其他清除。
+ public static void exit(int status)
+ 	终止当前正在运行的 Java 虚拟机。
+ 	参数用作状态码；
+ 	根据惯例，非 0 的状态码表示异常终止。
+ 		该方法调用 Runtime 类中的 exit 方法。该方法永远不会正常返回。
+ 	调用 System.exit(n) 实际上等效于调用：
+ 		Runtime.getRuntime().exit(n)
+
+public static long currentTimeMillis()
+	返回以毫秒为单位的当前时间。
+	注意，当返回值的时间单位是毫秒时，值的粒度取决于底层操作系统，并且粒度可能更大。
+	例如，许多操作系统以几十毫秒为单位测量时间。
+	返回：
+	当前时间与协调世界时 1970 年 1 月 1 日午夜之间的时间差（以毫秒为单位测量）。
+
+
+public static void arraycopy(Object src,int srcPos, Object dest,int destPos,int length)
+	从指定源数组中复制一个数组，复制从指定的位置开始，到目标数组的指定位置结束。
+	参数：
+	src - 源数组。
+	srcPos - 源数组中的起始位置。
+	dest - 目标数组。
+	destPos - 目标数据中的起始位置。
+	length - 要复制的数组元素的数量。 

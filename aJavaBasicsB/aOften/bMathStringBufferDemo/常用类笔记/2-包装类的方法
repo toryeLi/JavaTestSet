@@ -1,0 +1,37 @@
+--------------包装类-------------
+//包装类，每一个基本类型都有对应的包装类
+//并且都有一个将基本类型创建成包装类的构造方法
+Boolean bobj=new Boolean(true);
+Integer integer=new Integer(1);
+Long lobj=new Long(1);
+Short sobj=new Short((short)1);
+Character cobj=new Character('a');
+Float fobj=new Float(1.0f);
+Double dobj=new Double(1.0);
+Byte byobj=new Byte((byte)1);
+//每个包装类都有一个valueOf()方法，用于将字符串转成相应的包相类
+System.out.println(Boolean.valueOf("false"));
+System.out.println(Integer.valueOf("1"));
+System.out.println(Short.valueOf("1"));
+System.out.println(Long.valueOf("1"));
+System.out.println(Float.valueOf("1.0"));
+System.out.println(Double.valueOf("1.0"));
+System.out.println(Byte.valueOf("1"));
+//Character类是构造将基本类型char转成包装类型Character
+System.out.println(Character.valueOf('a'));
+
+//第个包装类都有一个parseXxx方法，将字符串转成对应的基本类型,除Character类
+System.out.println(Boolean.parseBoolean("false"));
+System.out.println(Integer.parseInt("1"));
+System.out.println(Short.parseShort("1"));
+System.out.println(Long.parseLong("1"));
+System.out.println(Float.parseFloat("1.0"));
+System.out.println(Double.parseDouble("1.0"));
+System.out.println(Byte.parseByte("1"));
+
+//Character包装类的常用方法
+Character.isLetter('a');//判断这个字符是否为英文字母
+Character.isDigit('1');//判断这个字符是否为数字
+Character.isUpperCase('A')//判断这个字符是否为大写
+Character.isLowerCase('a')//判断这个字符是否小写
+Character.isWhitespace(' ')//判断这个字符是否为空格或回车
