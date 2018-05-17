@@ -8,5 +8,15 @@
     2.1.2 常用类Math,StringBuffer,包装类，Date:  aOften.bMathStringBufferDemo
 
     反射，枚举，注解，内部类、异常和数组
- 3 bJavaSeniorA java语言进阶（一）
- 4 bJavaSeniorA java语言进阶（二）
+ 3 bJavaSeniorA  java语言进阶（一）
+   3.1 多线程：aThread
+    3.1.1 多线程基础 aThread.aBasics
+    3.1.2 线程常用方法，线程安全和同步锁:aThread.bSafe
+    3.1.3 重入锁，非公平，公平，读写锁：aThread.cThreadLock
+    3.1.4  异步线程编程，线程池，线程组：aThread.dThreadPool
+   3.2 网络编程，socket编程：bSocket
+    3.2.1 aTcp: TCP协议socket编程
+    3.2.2 bUDP: udp协议socket编程
+    3.2.1 socket基础及socket网络编程登录实现多客户端:bSocket.aSocketTest
+   3.3 XML深入： cXmlTest
+ 4 bJavaSeniorA  java语言进阶（二）
