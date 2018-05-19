@@ -1,4 +1,4 @@
-package aOften.aObjectStringDemo;
+package aOften.bMathStringBufferDemo;
 
 /**
  * 学习Objecgt类 native本地栈方法，方法使用使用c语言中实现的方法 hashcode就是一个对象在内存中地址

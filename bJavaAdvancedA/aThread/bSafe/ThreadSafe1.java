@@ -16,7 +16,7 @@ public class ThreadSafe1{
 private  static class MyRunnable implements  Runnable{
     static int count=10;
     @Override
-    public void run() {
+    public void run() {//
         while (count>=0){
             count--;
             try {

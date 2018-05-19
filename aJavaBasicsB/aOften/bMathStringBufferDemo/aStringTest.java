@@ -1,8 +1,8 @@
-package aOften.aObjectStringDemo;
+package aOften.bMathStringBufferDemo;
 
 import java.util.Arrays;
 
-public class StringTest {
+public class aStringTest {
 public static void main(String[] args) {
 	String name="张飞A";
 	String name1=new String();//创建字符串对象

@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DateDemo {
+public class eDateDemo {
     public static void main(String[] args) {
         // 创建一个日期对象
         Date date = new Date();

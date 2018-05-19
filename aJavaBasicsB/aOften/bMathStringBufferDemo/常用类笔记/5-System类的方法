@@ -45,7 +45,7 @@ public static void arraycopy(Object src,int srcPos, Object dest,int destPos,int 
 	从指定源数组中复制一个数组，复制从指定的位置开始，到目标数组的指定位置结束。
 	参数：
 	src - 源数组。
-	srcPos - 源数组中的起始位置。
+	srcPos - 源数组中的起始位置。ddd
 	dest - 目标数组。
 	destPos - 目标数据中的起始位置。
 	length - 要复制的数组元素的数量。 

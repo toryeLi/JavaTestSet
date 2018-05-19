@@ -1,0 +1,16 @@
+=============IDEA使用技巧--精准搜索=========
+注：以下命令都是在windos下测试，其他系统环境下，有可能不同
+1 Ctrl+N  快速的找到--类文件：找到快捷键的方法：（Alt+N||点击菜单栏 Navigate)---> 找到 class...  --->Ctrl+N
+  1.1 Ctrl+N -->Ctrl+N  快速找到包含jar包里的类(也就是选中Include non - project items)
+2 Ctrl+Shift+N  快速找到文件：找到快捷键的方法：（Alt+N||点击菜单栏 Navigate)---> 找到 File...  --->Ctrl+Shift+N
+ 2.1 Ctrl+Shift+N -->Ctrl+Shift+N 快速找到包含jar包里的文件(也就是选中Include non - project Files)
+3 符号（在IntelliJ IDEA是指：函数或者属性）
+  3.1  Ctrl+Alt+Shift+N 快速找到函数,找到快捷键的方法：（Alt+N||点击菜单栏 Navigate）--->找到Symbol...-->Ctrl+Alt+Shift+N
+  3.2  Ctrl+Alt+Shift+N 快速找到非当前项目的函数(也就是选中Include non - project Symbol)
+4 字符串搜索
+  4.1 Ctrl+Shift+F 字符串搜索：找到快捷键的方法： (Alt+E||点击菜单栏 Edit)-->Find--->Find in path-->Ctrl+Shift+F
+    Match case:是否忽略大小写; words: 搜索的字符串是否是一个单词; Regex:是否启用正则匹配
+    File mask:搜索的文件类型
+    In project: 在当前project中搜索;Module:在当前模块中搜索;Directory:在当前目录下搜索; scope:自定义搜索范围;
+
+

@@ -7,8 +7,9 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  *
  */
-public class MathDemo {
+public class dMathDemo {
     public static void main(String[] args) {
+
         System.out.println(Math.abs(-20));//取绝对值
         System.out.println(Math.ceil(33.3));//向上取整
         System.out.println(Math.floor(33.1));//向下取整
@@ -22,7 +23,7 @@ public class MathDemo {
         int val=trand.nextInt(1,2);
         System.out.println(val);
         System.out.println(Math.pow(2,3));//取一个数的多次幂
-        System.out.println(Math.sqrt(3));//取某个数的平方根
+        System.out.println(Math.sqrt(3));//取某个数的平方根ddd
     }
 }
 
