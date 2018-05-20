@@ -1,0 +1,45 @@
+该教材是在 慕课网 平台 闪电侠 老师的 《IntelliJ IDEA神器使用教程》课程 整理的笔记，该教程链接：https://www.imooc.com/learn/924
+=============IDEA使用技巧--alter+Enter=========
+注：以下命令都是在windos下测试，其他系统环境下，有可能不同
+alter+Enter:根据所输入的内容，给出智能的建议，在不同的情况下会给出不同的提示
+1 如何找到该快捷键：Alt+Shift+A--->输入：show intention actions-->alter+Enter
+2 自动创建函数：例如随便输入一个函数：  fu()--->按 Alt+Enter--->会自动创建该函数
+3 list replace
+  例如：//光标放到for这里，按Alt+ender
+    private static void f(List<String> a) {
+             for (int i = 0; i < a.size(); i++) {
+                 String value=a.get(i);
+             }
+         }
+   会生成如下代码：
+   private static void f(List<String> a) {
+           for (String value : a) {
+           }
+       }
+4 字符串format或者build
+   例如：System.out.println("name:" + name + "age:" + age);
+   //光标放在 "name"--->按Alt+Enter-->选中： Replace"+" whith "String.format()"，会生成如下代码：
+   System.out.printf("name:%sage:%d%n", name, age);
+   例如：String x="name:"+name+"age:"+age;
+   //光标放在 "name"--->按Alt+Enter-->选中： Replace"+" whith "String.format()"，会生成如下代码：
+        String x= String.format("name:%sage:%d", name, age);
+     build同理。
+5 实现接口
+   例如新建接口 UserService：
+   public interface UserService {
+    void say();
+   }
+   //光标放到 UserServic上，按Alt+Enter-->Implement interface-->回车
+   package com.company;
+   public class UserServiceImpl implements UserService {
+       @Override
+       public void say() {
+
+       }
+   }
+6 纠正单词
+  System.out.println("nmea");//光标放到nmea上，按Alt+Enter-->Type:Change to ...
+  结果：
+  System.out.println("name");
+7 导包
+  例如：List a;//按Alt+Enter-->即可导入包

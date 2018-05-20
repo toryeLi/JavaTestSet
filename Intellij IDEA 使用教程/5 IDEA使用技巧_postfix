@@ -1,0 +1,43 @@
+该教材是在 慕课网 平台 闪电侠 老师的 《IntelliJ IDEA神器使用教程》课程 整理的笔记，该教程链接：https://www.imooc.com/learn/924
+=============IDEA使用技巧--postfix=========
+注：以下命令都是在windos下测试，其他系统环境下，有可能不同
+1 打开Postfix Completion方法:Ctrl+Shift+A --->搜索输入：Postfix Completion
+注：Postfix Completion不可以自定义，只可以用IDEA设定好的
+2 常用的Postfix:
+  2.1 输入 100.fori,回车：
+        for (int i = 100; i > 0; i--) {
+
+        }
+  2.2  sout
+    输入  "aaaa".sout
+  System.out.println("aaaa");
+  2.3 field
+   假如有一个空的User类，如下：
+     public class User{
+
+     }
+   在main函数内输入： new User("name")--->Alt+Enter(智能修复)，此时会跳转到User类中，并会添加一个带参数的构造函数，如下：
+   public class User{
+       public User(String name) {
+        //name.field
+    }
+   }
+   然后在带参数的构造函数内输入：name.field,则会自动生成字段,如下：
+     public class User {
+         private final String name;
+         public User(String name) {
+             this.name = name;
+         }
+     }
+  2.4 return
+     new User("dd").return--->按 Enter 键
+  2.5 nn
+     public void valid(User user){
+       //user.nn-->Enter
+         if (user != null) {
+
+         }
+     }
+
+
+

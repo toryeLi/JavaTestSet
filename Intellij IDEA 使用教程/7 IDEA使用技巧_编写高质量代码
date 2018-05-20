@@ -1,0 +1,30 @@
+该教材是在 慕课网 平台 闪电侠 老师的 《IntelliJ IDEA神器使用教程》课程 整理的笔记，该教程链接：https://www.imooc.com/learn/924
+=============IDEA使用技巧--编写高质量代码=========
+1 重构
+ 1.1 重构变量
+    Shift+F6: 给变量改名：光标定位到需要改名的字段，按Shift+F6，所有引用该变量的地方，都会更改。该快捷键的位置：Alt+R||Refactor-->Rename
+ 1.2 重构方法：
+   1.2.1 可以直接在调用方法的地方，添加或者删除一个参数，然后点击Alt+Enter,可以重构方法,其他调用的地方也会更改。
+   1.2.2 或者点击Ctrl+F6,该快捷键的位置：(Alt+R||Refactor)-->Change Signature... -->ctrl+F6
+2 抽取
+  1 Ctrl+alt+V: 抽取变量, 快捷键位置：（ Alt+R||Refactor）-->Extratc-->Variable...-->Ctrl+alt+V
+     例如：
+     public void test (){
+         System.out.println("aaa");
+         System.out.println("aaa");
+         System.out.println("aaa");
+         System.out.println("aaa");
+         System.out.println("aaa");
+         System.out.println("aaa");
+     }
+ //光标定位到"aaa",按 Ctrl+alt+V-->Replace all 6 occurrences-->回车，结果如下：
+ public void test (){
+     String aaa = "aaa";
+     System.out.println(aaa);
+     System.out.println(aaa);
+     System.out.println(aaa);
+     System.out.println(aaa);
+     System.out.println(aaa);
+     System.out.println(aaa);
+ }
+2 Ctrl+L 抽取静态变量
