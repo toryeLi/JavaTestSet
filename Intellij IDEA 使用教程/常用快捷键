@@ -1,3 +1,8 @@
+windows系统常用快捷键：
+Alt+F4 关闭当前程序
+Alt+空格+C 关闭窗口
+Alt+空格+N 最小化窗口
+==========================
 new Thread(): 变成Thread thread=new Thread():的快捷键是 ctrl+2,l
 版本控制快捷键
 Ctrl + K 版本控制提交项目，需要此项目有加入到版本控制才可用（必备）

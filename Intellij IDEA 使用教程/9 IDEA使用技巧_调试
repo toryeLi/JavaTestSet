@@ -1,0 +1,20 @@
+该教材是在 慕课网 平台 闪电侠 老师的 《IntelliJ IDEA神器使用教程》课程 整理的笔记，该教程链接：https://www.imooc.com/learn/924
+=============IDEA使用技巧--调试=========
+1 断点调试
+  1.1 Ctrl+F8 添加断点;快捷键位置：(Alt+u||菜单栏 Run)--->Toggle Line Breakpoint-->Ctrl+F8
+  1.2 Shift+F9 Debug Run...;运行上一次的程序
+  1.3 Shift+Alt+F9 Debug Run...;可以选择调试哪一个程序
+  1.4 F8：在调试状态下，单步运行
+  1.5 F9:Resume program 表示后面的我不想再单步运行了，按F9可以跳过，后面如果有断点，会跳到该断点，如果没有则运行完结束
+  1.6 Ctrl+Shift+F8 查看所有断点,快捷键位置：(Alt+u||菜单栏 Run)--->View Breakpoints...-->Ctrl+Shift+F8
+  1.7 禁止所有断点
+  1.8 Ctrl+Shift+F9 条件断点
+  1.9 表达式求值：
+      表达式求值是指在代码调试过程中，在断点处某一个值在计算后，会产生什么结果（可以查看更改某个变量的值）
+      在调试状态下按：Alt+F8；快捷键位置在：(Alt+u||菜单栏 Run)--->Evaluate Expression...-->Alt+F8
+  1.20 在调试状下，按F9，会运行到 光标所在位置
+  1.21 SetValue
+  1.22 编辑运行上下文
+2 运行
+  2.1 Shift+F10  运行上一次的程序
+  2.2 Shift+Alt+F10 可以选择运行哪一个程序

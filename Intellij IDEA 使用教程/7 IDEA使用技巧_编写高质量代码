@@ -27,4 +27,39 @@
      System.out.println(aaa);
      System.out.println(aaa);
  }
-2 Ctrl+L 抽取静态变量
+2 Ctrl+Alt+C 抽取静态变量，快捷键位置：（ Alt+R||Refactor）-->Extratc-->Constant...-->Ctrl+alt+V
+3 Ctrl+Alt+F 抽取成员变量,快捷键位置：（ Alt+R||Refactor）-->Extratc-->Field...-->Ctrl+alt+F
+4 Ctrl+Alt+P 抽取方法参数,快捷键位置：（ Alt+R||Refactor）-->Extratc-->Parameter...-->Ctrl+alt+P
+   例如：光标定位在this.firstName的firstName的位置，按Ctrl+Alt+p -->选择this.firstName
+public class User {
+    private String firstName;
+    public String getFullName (String lastName)  {
+        String fullName=this.firstName+","+lastName;
+        return fullName;
+    }
+    public void test(){
+        getFullName("san");
+        getFullName("san");
+        getFullName("san");
+        getFullName("san");
+        getFullName("san");
+        getFullName("san");
+    }
+}
+执行结果如下：
+public class User {
+    private String firstName;
+    public String getFullName(String lastName, String firstName)  {
+       String fullName= firstName +","+lastName;
+       return fullName;
+    }
+    public void test(){
+        getFullName("san", this.firstName);
+        getFullName("san", this.firstName);
+        getFullName("san", this.firstName);
+        getFullName("san", this.firstName);
+        getFullName("san", this.firstName);
+    }
+
+}
+5  Ctrl+Alt+m 抽取函数; 快捷键位置：（ Alt+R||Refactor）-->Extratc-->Method...-->Ctrl+alt+m

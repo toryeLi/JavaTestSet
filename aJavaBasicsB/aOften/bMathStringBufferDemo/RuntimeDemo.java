@@ -20,5 +20,5 @@ public class RuntimeDemo {
       //获取可用CPU核数
         System.out.println(run.availableProcessors());
     }
-
+    //D:\workspace-sts\JavaTestRuanMo\Intellij IDEA 使用教程
 }

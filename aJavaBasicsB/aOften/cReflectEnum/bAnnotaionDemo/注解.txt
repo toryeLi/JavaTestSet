@@ -1,0 +1,22 @@
+1、注解是jdk1.5版本提供的一个特性
+   @Deprecated 标识使用方法已经被放弃，但是还可以使用
+   @SuppressWarnings("all") //@SubressWarnings("uncheck")取消警告操作
+2、元注解：不能包含其他注解的注解（元数据）
+   @Documented 生成JavaDOC文档的时候会生成在文件中
+
+   @Retention  代表该注解的作用域
+   SOURCE  源码中有效
+   CLASS 字节码文件中有效
+   RUNTIME JVM运行时有效
+
+   @Target  指定注解能够出的位置
+   TYPE  标注在类上面
+   METHOD 标注在方法上面
+   PARAMETER 标注在参数上面
+   FIELD  标注在字段上面
+
+   @Interned  注解可以继承
+
+3  isAnnotationParent(Xxxx.class) 判断是否有注解
+   getAnnotation(Xxxx.class)   获取到Xxx对应的注解对象
+   上面的方法适用于Class对象，Field对象，Method对象。
