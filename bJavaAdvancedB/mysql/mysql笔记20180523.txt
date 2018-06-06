@@ -1,0 +1,102 @@
+﻿---------------- DDL 操作表 -------------------
+1、创建部门表
+create table t_dept
+(
+      dept_id int primary key auto_increment,
+      dept_name varchar(20) not null
+);
+
+2、创建员工表
+drop table if exists t_emp; -- 如果这个表存在删除后重新创建
+create table t_emp
+(
+	emp_id int auto_increment primary key,
+	emp_name varchar(20) not null,
+	emp_sex char(3) not null,
+	dept_id int not null,
+	-- foreign key(dept_id) references t_dept(dept_id)  #创建表的时候直接创建外键
+);
+
+3、添加外键约束
+alter table t_emp add constraint FK_EMP_DEPT foreign key(dept_id) references t_dept(dept_id);
+
+4、给员工表添加薪资列
+alter table t_emp add(emp_salary int(5) not null);
+alter table t_emp add(emp_mail varchar(30) not null);
+-- 如果增加一列，并且这一列有默认值，而且是非空列
+alter table tb_emp add (emp_mail varchar(30) not null default 'default@mail.com');
+
+5、修改列 [modify只能修改列的类型和约束默认值]
+alter table t_emp modify emp_salary double(6,1) not null; // 99999.9
+[change可以修改列的名及类型和约束]
+alter table t_emp change emp_salary salary double(5,1) not null;
+
+6、删除列
+alter table t_emp drop emp_mail;
+
+7、重命名表名
+alter table t_emp rename to tb_emp;
+
+
+
+-------------------------- DML(数据操作语言INSERT, DELETE, UPDATE)--------------------
+-- 主要对数据库中表的数据操作
+1、增加数据
+insert into 表名名称(字段名1,字段名2,.....) values (值1,值2,.....);
+   -- 插入指定字段的值-> 前提: 没有插入的字段是可以为null或者有默认值
+   insert into tb_emp (emp_name, emp_sex, emp_mail) values ('信誉昂','男','xinyang@hp.com');
+   -- 插入所有字段
+   insert into tb_emp (emp_name, emp_sex, dept_id, salary, emp_mail) values ('张三','女',2,5000,'zhangsan@hp.com');
+   insert into tb_emp values (null,'大乔','女',2,5000,'zhangsan@hp.com');
+   -- 批量插入
+   insert into tb_emp values (null,'赵柳','男',2,5000,'zhangsan@hp.com'),(null,'阳阳','女',2,6000,'zhangsan@hp.com');
+2、删除数据
+delete from 表名 <where 删除条件>
+   -- 按照条件删除（经常使用）
+   delete from tb_emp where emp_id = 1;
+   -- 删除所有数据(学习的时候尝试一下，开发中禁止使用)
+   delete from t_login; -- 删除表中所有数据,不会重置主键值
+   -- 清空表,重置主键值
+   truncate table t_login;
+
+3、修改数据
+update 表名 set 字段名1 = 值1, 字段名2 = 值2,..... [where 修改条件]
+   -- 修改字段值
+   update tb_emp set emp_mail='daqiao@hp.com' where emp_id = 10002;
+   update tb_emp set emp_mail='xiaoqiao@hp.com',dept_id = 1 where emp_id = 10001;
+   
+   --不带条件的修改[修改必须带上条件]
+   update tb_emp set salary = 8000;
+   
+---------------------- DCL(数据控制语言) ----------------------
+-- 创建用户
+CREATE USER '账号'@'主机名/IP' IDENTIFIED BY '密码';
+	// 没有任何操作数据表的权限
+	--create user 'gerry'@'localhost' identified by '123';
+	
+-- 授予用户权限
+-- 注意： host必须和创建用户使用host是一致。
+GRANT privileges ON databasename.tablename TO 'username'@'host'
+	// 授予gerry用户拥有testdb数据中tb_emp表查询权限
+	-- grant select on testdb.tb_emp to 'gerry'@'localhost';
+-- 撤销用户权限
+REVOKE privileges on databasename.tablename from 'username'@'host'
+	// 撤销gerry用户查询权限
+	revoke select on testdb.tb_emp from 'gerry'@'localhost';
+	
+	
+-- 使用手动事务https://blog.csdn.net/u012440687/article/details/52116108
+1、show variables like 'autocommit' --查询事务是否为自动提交
+2、set autocommit = 0;              -- 关闭自动提交
+   set autocommit = on;
+注意： 数据中默认是一条SQL语句为一个事务。
+
+事务生命周期：全部提交或者回滚事务的生命周期结束
+事务开始 -> 回滚事务 rollback
+事务开始 -> 提交事务 commit
+
+
+   
+   
+
+   

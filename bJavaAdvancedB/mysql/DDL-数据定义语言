@@ -1,0 +1,8 @@
+1 DDL Data Definition Language 数据定义语言
+2 用来定义数据库的对象：库，表，列等
+3 操作数据库
+  3.1 C  create 创建 create database 数据库名称；创建一个新的数据库
+  3.2 R  read 查询   show databases;//查询所有的数据库名称
+       show create database database mysql1;//查询数据库创建语言
+  3.3 U update  修改  alter database mydb1 character set utf8;更改字符集编码为utf-8
+  3.4 D drop 删除 drop database 数据库名称；//删除数据库

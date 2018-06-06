@@ -1,0 +1,92 @@
+表结构和数据
+-- ----------------------------
+-- Table structure for tb_emp
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_emp`;
+CREATE TABLE `tb_emp`  (
+  `emp_id` int(11) NOT NULL AUTO_INCREMENT,
+  `emp_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `emp_sex` char(3) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `dept_id` int(11) NULL DEFAULT NULL,
+  `salary` double(5, 1) NULL DEFAULT 4000.0,
+  `emp_mail` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'default@mail.com',
+  PRIMARY KEY (`emp_id`) USING BTREE,
+  INDEX `dept_id`(`dept_id`) USING BTREE,
+  CONSTRAINT `tb_emp_ibfk_1` FOREIGN KEY (`dept_id`) REFERENCES `t_dept` (`dept_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 200004 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_emp
+-- ----------------------------
+INSERT INTO `tb_emp` VALUES (2, '信誉昂', '男', 1, 9000.0, 'xinyang@hp.com');
+INSERT INTO `tb_emp` VALUES (3, '张三', '女', 2, 8000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10001, '小乔', '女', 1, 7800.0, 'xiaoqiao@hp.com');
+INSERT INTO `tb_emp` VALUES (10002, '大乔', '女', 2, 6500.0, 'daqiao@hp.com');
+INSERT INTO `tb_emp` VALUES (10003, '赵柳', '男', 2, 6700.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10004, '阳阳', '女', 1, 8000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10005, '信誉昂', '男', 3, 4000.0, 'xinyang@hp.com');
+INSERT INTO `tb_emp` VALUES (10006, '赵柳', '男', 2, 5000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10007, '阳阳', '女', 2, 6000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10008, '赵柳', '男', 2, 5000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10009, '阳XXX阳', '女', 3, 6000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10014, '赵柳', '男', 3, 5000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10015, '阳xxx阳', '男', 2, 6000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10016, '赵柳', '男', 2, 5000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10017, '阳阳', '女', 3, 6000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (200001, '新员工', '女', 3, 4000.0, 'default@mail.com');
+INSERT INTO `tb_emp` VALUES (200002, 'admin', '女', 3, 4000.0, NULL);
+INSERT INTO `tb_emp` VALUES (200003, '关羽', '男', NULL, 8000.0, 'guanyu@hp.com');
+---------------------------------------------------------------------
+-- 使用DQL语句----------
+# 查询性别为男的员工信息【条件查询】
+SELECT * FROM tb_emp WHERE emp_sex = '男';
+# 条件查询
+# 查询性别为男并且是2号部门员工信息【多条件查询】
+SELECT * FROM tb_emp WHERE emp_sex = '男' AND dept_id = 2;
+# 查询性别为男或者1号部门员工信息
+SELECT * FROM tb_emp WHERE emp_sex = '男' OR dept_id = 1;
+
+# 模糊查询 LIKE
+# 查询带姓赵员工 '%' 匹配任意字符
+SELECT * FROM tb_emp WHERE  emp_name LIKE '赵%';
+# 匹配第二字为阳员工 '_'占位符
+SELECT * FROM tb_emp WHERE  emp_name LIKE '_阳%';
+# 匹配名字中含有阳员工信息
+SELECT * FROM tb_emp WHERE emp_name LIKE '%阳%';
+
+# 去重查询
+# 查询部门中有员工的部门编号
+SELECT DISTINCT dept_id FROM tb_emp;
+
+#null 查询
+# 没有分配部门员工 !=,<> 主要操作的非数据字段默认NULL
+SELECT emp_id, emp_name,IFNULL(dept_id,0) FROM tb_emp WHERE dept_id is null;
+SELECT emp_id, emp_name,IFNULL(dept_id,0) FROM tb_emp WHERE dept_id is not null;
+
+# 定义别名
+SELECT emp_id as 员工编号, emp_name 员工姓名 FROM tb_emp;
+SELECT emp_id, emp_name 员工姓名,'AAAA' 常量 FROM tb_emp;
+
+# 获取所有员工薪资并且按照降序排序[默认为升序排序asc, 降序使用desc]
+SELECT emp_id as 员工编号, emp_name 员工姓名, salary 薪资 FROM tb_emp ORDER BY salary DESC;
+
+# 使用聚合函数 count(),min(),max(),avg(),sum()
+select count(emp_id) 员工数, min(salary) 最低薪资, max(salary) 最高薪资,
+		avg(salary) 平均薪资, SUM(salary) 薪资总和 from tb_emp;
+
+# 分组查询
+# 查询每一个部门员工数，平均薪资，最高薪资，最低薪资，薪资总和
+# 分组查询能够出现的列必须是分组组和聚合函数 [处理小数函数ROUND(值,保留的小数位数)]
+select dept_id,count(emp_id) 员工数, min(salary) 最低薪资, max(salary) 最高薪资,
+		ROUND(AVG(salary),1) 平均薪资, SUM(salary) 薪资总和 from tb_emp where dept_id is not null GROUP BY dept_id;
+# 查询平均薪资和大于6000的信息 [HAVING 对分组后信息再次筛选]
+select dept_id,count(emp_id) 员工数, min(salary) 最低薪资, max(salary) 最高薪资,
+		ROUND(AVG(salary),1) 平均薪资, SUM(salary) 薪资总和 from tb_emp where dept_id is not null GROUP BY dept_id HAVING ROUND(AVG(salary),1) > 6000;
+# 查询平均薪资和大于6000的信部门中最高平均薪资部门 [LIMIT 限制查询记录数]
+select dept_id,count(emp_id) 员工数, min(salary) 最低薪资, max(salary) 最高薪资,
+		ROUND(AVG(salary),1) 平均薪资, SUM(salary) 薪资总和 from tb_emp
+		where dept_id is not null
+		GROUP BY dept_id
+		HAVING ROUND(AVG(salary),1) > 6000
+		ORDER BY ROUND(AVG(salary),1) DESC
+		LIMIT 1;

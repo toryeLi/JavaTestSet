@@ -1,0 +1,5 @@
+JDBC(Java DataBase connectivity,java数据库连接，java中定义操作数据库一套标准API
+DriverManager  专门管理驱动类
+Connection  用来接收通过驱动管理创建的连接对象
+Statement   执行SQL语句的编译接口
+ResultSet
