@@ -1,5 +1,54 @@
-JDBC(Java DataBase connectivity,java数据库连接，java中定义操作数据库一套标准API
+一 JDBC(Java DataBase connectivity,java数据库连接，
+java中定义操作数据库一套标准API
 DriverManager  专门管理驱动类
 Connection  用来接收通过驱动管理创建的连接对象
 Statement   执行SQL语句的编译接口
-ResultSet
+ResultSet 接收查询返回结果
+以上这套API都是java.sql包下面提供的
+============================================
+JDBC基本步骤：
+1 先去网上下载对应数据库的直连驱动包(http://mvnrepository.org/)
+2 加载数据库驱动
+3 通过DriverManager类中的Connection方法取到对应数据库连接
+4 通过Connection对象获取编译对象Statement
+5 定义编译对象需要执行的SQL语句
+6 通过编译对象执行SQL语句，并处理返回结果
+7 释放操作的资源
+============================================
+简单的JDBC程序
+1 产生类的对象
+   Class.forName("类名")，Class是一个类加载器，会抛异常，类找不到
+   new 类名
+2 创建连接
+  Connection conn=DriverManager.createConnection(String url,String userName,String passWord);
+3 执行SQL语句
+  3.1 要有语句对象Statement,Statement stmt=conn.createStatement();
+  3.2 PreparedStatement pstmt=new PreparedStatement();
+  3.3 执行
+     stmt.executeQuery():取得结果集，返回ResultSet对象
+     stmt.executeUpdate();使用SQL语句更新数库，insert、update、delete,小技巧：LongboxEclipse
+  3.4 循环取得结果集
+      (ResultSet)rs.next() 拿到下一条记录，循环
+      逐条取得对象值，getString();getInt();
+      同时可以输出
+============================================
+资源要及时的关闭，即使在程序出了错的情况下：
+  try{}catch(){}
+  ClassNotFoundException
+  SQLException
+  变量拿出来在try...catch语句外声明
+  close语句也使用try...catch语句包裹，且判断是否为空
+  几个数据库变量关闭之后设为空
+
+
+
+
+
+
+
+
+
+
+
+
+

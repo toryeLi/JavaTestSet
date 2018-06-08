@@ -1,0 +1,139 @@
+============= 内部类 ==============
+1、普通内部类
+class Outer {
+	
+	class Inner {
+		// 内部类可以使用外部类中一切成员变量
+		// 如果外部类中定义的一个成员变量和内部类定义成员变量相同(使用就近原则)
+		// 直接使用this.成员 调用内部类中成员
+		// 使用Outer.this.成员 调用外部类成员
+	}
+}
+
+class Test {
+	public static void main(String[] args) {
+		// 需要先创建外部类对象，在通过外部类对象创建内部类对象
+		Outer.Inner inner = new Outer().new Inner();
+	}
+}
+2、静态内部类
+// 注意： 外部类不能通过static关键字修饰，也不能使用private关键
+class Outer {
+	
+	// 内部类可以使用private关键修饰类
+	static class Inner {
+		// 内部类可以使用外部类中一切成员变量
+		// 如果外部类中定义的一个成员变量和内部类定义成员变量相同(使用就近原则)
+		// 直接使用this.成员 调用内部类中成员
+		// 使用Outer.this.成员 调用外部类成员
+	}
+}
+
+class Outer {
+	
+	// 内部类可以使用private关键修饰类
+	static class Inner {
+		// 内部类可以使用外部类中一切成员变量
+		// 如果外部类中定义的一个成员变量和内部类定义成员变量相同(使用就近原则)
+		// 直接使用this.成员 调用内部类中成员
+		// 使用Outer.this.成员 调用外部类成员
+	}
+}
+
+// 静态内部类可以被外部类继承
+class Child extends Outer.inner {
+	
+}
+
+// 内部类也解决多继承解决方案
+class OuterClass extends Person {
+	class InnerClass extends Woman {
+		
+	}
+}
+
+class Person {
+
+}
+
+class Woman {
+	
+}
+
+class Test {
+	public static void main(String[] args) {
+		// 通过下面方法就可以创建内部类对象
+		OUter.Inner inner = new Outer.Inner();
+	}
+}
+
+3、匿名内部类
+interface Function {
+	void hit();
+}
+
+class Outer {
+	// 匿名内部类
+	Function function = new Function(
+		void hit() {
+			
+		}
+	);
+}
+
+4、局部内部类(把一个类定义方法里面)
+class Outer {
+	void print() {
+		class Inner {
+			void print() {
+			}
+		}
+		
+		new Inner().print();
+	}
+}
+
+////////////////// 异常 ///////////////////
+Throwable
+	- Error
+	- Exception
+-- 常用异常:
+   RuntimeException
+   NullPointerException //空指针异常（null.方法）
+   NumberFormatException //数组格式化异常(Integer.parseInt("aaa"))
+   ClassCastException    // 对象类型不同强制转换错误
+   ArithmeticException   // 被0除
+   ArrayIndexOutofBoundsException // 数组下标越界异常
+   
+   Excepiton
+   IOException
+   ClassNotFoundException
+   FileNotFoundException
+   EOFException
+   
+   总结区别：
+   RuntimeException抛出异常不需要显示的处理它
+   Exception 必须通过throw,throws关键字处理，try {}catch(Excepiton e) {}
+-- 处理方式:
+   throw 出现方法体中任何位置[显示声明一个异常]
+   throws 只能放在方法声明的最后面[向上层抛出一个异常]
+   try {
+		正常执行
+   } catch(NullPointerException e) {
+		捕获异常
+   } catch(RuntimeException e) {
+		捕获异常
+   } catch(Excepiton e) {
+		捕获异常
+   } finally {
+		不管上面是否正常执行
+		这个块里面的东西都会执行
+		// 作用：
+		释放操作的资源
+   }
+-- 自定义异常
+   新建Java类继承Exception
+   1、如果你是系统异常，最好继承Exception
+   2、如果是业务异常，最好继承RuntimeException
+   
+

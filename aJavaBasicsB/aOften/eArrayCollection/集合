@@ -1,0 +1,148 @@
+集合和数组的区别:
+1、数组存储必须是同一个类型的元素，元素类可以是对象，也可以是基本数据类型，长度是固定。
+2、集合存储的必须是对象，不能存储基本数据的元素,如果要存储必须转换为对应包装类，长度可变。
+   可以存储不同类型对象的容器
+
+------------- Set ----------------------
+Set就是最标准的与Collection相同的
+存放位置无索引的，因此存储的元素不允许重复
+---------------------------------------------------------
+Set集合常用方法：
+增加、删除、大小、包含、为空、清空、迭代、并交；
+boolean add(E o);
+boolean remove(Object o);
+int size();
+boolean contains(Object o);
+boolean isEmpty();
+void clear();
+Iterator<E> iterator();
+boolean addAll(Collection c);
+boolean retainAll(Collection c);
+ boolean removeAll(Collection c);
+
+------------- Stack 栈：后入先出 ----------------------
+E push(E item) 把项压入堆栈顶部
+E pop() 移除堆栈顶部的对象，并作为此函数的值返回该对对象
+E peek() 查看堆栈顶部的对象，但不从堆栈中移除它
+boolean empty() 测试堆栈是否为空
+int search(Object o) 返回对象在堆栈中的位置，以1为基数
+------------- Deque ----------------------
+双端队列既是栈，又是队列
+既有栈的方法，也有队列方法
+------------- List ----------------------
+结构：线性表
+可根据索引存，取元素
+元素的存放位置有索引，因此此元素可以重复
+List集合常用的方法：
+List集合的方法中，带索引参数（角标）的都是新增的方法；带角标的操作都是数组原理；
+除了继承Collection集合的方法，还有以下自己独有的方法，都与索引（下标）有关：
+增加、删除、修改（只能是修改，不能是插入）、查找（获取）元素、查找元素所在位置（两种）；
+void add(int index, E e);
+E remove(int index);
+E set(int index, E e);
+E get(int index);
+int indexOf(Object o);
+int lastIndexOf(Object o);
+------------- Queue ----------------------
+队列：数组结构中比较重要的一种类型，它支持FIFO，尾部添加、头部删除
+（先进队列的元素先出队列），跟我们生活中的排队类似
+数据结构：队列
+--在对列头出元素
+--在对列尾进元素
+1 add(E),offer(e) 在尾部添加
+2 remove(),poll() 删除并返回头部
+3 element(),peek() 获取但不删除
+------------- Collection ----------------------
+
+// 创建Collection集合对象
+Collection cl = new ArrayList();
+
+// 1、添加元素
+cl.add("AAA");
+cl.add(1.4D);
+cl.add(1.3F); // new Float(1.3F);
+// 默认int类型， 如果是小数默认为double
+cl.add(3); // new Integer(3)
+cl.addAll(Arrays.asList("AAAAA","VVVV","BVVV"));
+
+// 2、删除元素的方法
+cl.remove(new Integer(3));
+cl.remove(new Float(1.3));
+
+System.out.println(cl.size());
+
+// 3、清楚集合中元素的方法
+// cl.clear();
+
+System.out.println(cl.isEmpty());
+
+// 4、判断是否包含某个元素
+System.out.println(cl.contains("AAA"));
+
+// 5、请2个集合中相同元素组成一个新的集合
+Collection cl1 = Arrays.asList("AAA",1.4,"CCC","DDD");
+System.out.println(cl.retainAll(cl1));
+System.out.println("------------------");
+System.out.println(cl);
+
+// 遍历集合
+
+// 1、迭代器
+Iterator it = cl.iterator();
+while (it.hasNext()) {
+	System.out.print(it.next()+" ");
+}
+System.out.println("\r\n");
+
+// 2、增强for
+for (Object obj : cl) {
+	System.out.print(obj+" ");
+}
+
+-----------------------List -> ArrayList -----------------------
+// 底层： 基于数组实现的
+// List接口特点： 元素是有序，并且是可以包含重复元素的
+List list = new ArrayList();
+// 添加元素的方法
+add(Object obj);
+add(index, Object obj)
+addAll(Collection cl);
+addAll(index, Collection cl);
+// 删除元素
+remove(int index);
+remove(Object obj);
+removeAll(Collection cl);
+// 可以根据下标获取到指定元素
+get(int index);
+// 获取元素个数
+size();
+// 遍历集合
+ListIterator （正向遍历，反向遍历）
+Iterator
+for 普通
+for 增强
+
+---------------------------List -> LinkedList 基于链表 -----------------------
+// 随机在内存中分配空间
+// List接口特点： 元素是有序，并且是可以包含重复元素的
+List list = new ArrayList();
+// 添加元素的方法
+add(Object obj);
+add(index, Object obj)
+addAll(Collection cl);
+addAll(index, Collection cl);
+// 删除元素
+remove(int index);
+remove(Object obj);
+removeAll(Collection cl);
+// 可以根据下标获取到指定元素
+get(int index);
+// 获取元素个数
+size();
+// 遍历集合
+ListIterator （正向遍历，反向遍历）
+Iterator
+for 普通
+for 增强
+
+

@@ -34,3 +34,22 @@ CREATE TABLE `tb_emp`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 22767171 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+INSERT INTO `tb_emp` VALUES (2, '信誉昂', '男', 1, 9000.0, 'xinyang@hp.com');
+INSERT INTO `tb_emp` VALUES (3, '张三', '女', 2, 8000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10001, '小乔', '女', 1, 7800.0, 'xiaoqiao@hp.com');
+INSERT INTO `tb_emp` VALUES (10002, '大乔', '女', 2, 6500.0, 'daqiao@hp.com');
+INSERT INTO `tb_emp` VALUES (10003, '赵柳', '男', 2, 6700.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10004, '阳阳', '女', 1, 8000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10005, '信誉昂', '男', 3, 4000.0, 'xinyang@hp.com');
+INSERT INTO `tb_emp` VALUES (10006, '赵柳', '男', 2, 5000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10007, '阳阳', '女', 2, 6000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10008, '赵柳', '男', 2, 5000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10009, '阳XXX阳', '女', 3, 6000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10014, '赵柳', '男', 3, 5000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10015, '阳xxx阳', '男', 2, 6000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10016, '赵柳', '男', 2, 5000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (10017, '阳阳', '女', 3, 6000.0, 'zhangsan@hp.com');
+INSERT INTO `tb_emp` VALUES (200001, '新员工', '女', 3, 4000.0, 'default@mail.com');
+INSERT INTO `tb_emp` VALUES (200002, 'admin', '女', 3, 4000.0, NULL);
+INSERT INTO `tb_emp` VALUES (200003, '关羽', '男', NULL, 8000.0, 'guanyu@hp.com');

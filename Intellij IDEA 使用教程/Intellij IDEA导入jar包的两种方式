@@ -1,0 +1,8 @@
+Intellij IDEA导入jar包的两种方式：
+第一种：
+File –> Project Structure导入方法
+先是进入：File –> Project Structure-->Modules-->Dependencies--->
+点击最右侧的绿色+号-->选择 1 JARs or directories...或者 2 Library...都可以-->然后选择要导入的包
+第二种：
+在要导入的Jar包上右击，选择Add as Library...-->点击OK就行了
+
