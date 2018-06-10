@@ -1,0 +1,17 @@
+Map
+Map集合常用的方法：
+增加，删除，修改，查找（获取），大小，包含，清空，迭代
+V put(K k,V v)
+V remove(Object k)
+put()方法也能起到修改功能
+V get(Object k);
+int size();
+boolean containsKey(Object k);
+boolean containsValue(Object v);
+boolean isEmpty();
+void clear();
+
+HashTable与HashMap的区别：
+HashMap不是线程安全的，key和value可以存储null值
+HashTable是线程安全的，key和value不可以存储null值
+HashMap性能要优于HashTable
