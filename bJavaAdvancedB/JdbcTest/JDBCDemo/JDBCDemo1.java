@@ -1,9 +1,6 @@
 package JdbcTest.JDBCDemo;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class JDBCDemo1 {
     private final static String URL="jdbc:mysql://localhost:3306/test?useSSL=true&useUnicode=true";
@@ -12,8 +9,8 @@ public class JDBCDemo1 {
     public static void main(String[] args){
         try{
             //加载数据库驱动
-            Class.forName("com.mysql.jdbc.Driver");//创建Driver.class的类对象
-            //通过DriverManager类getConnection方法获取连接对象
+         Class.forName("com.mysql.jdbc.Driver");//创建Driver.class的类对象
+//通过DriverManager类getConnection方法获取连接对象
             /**
              *第一个参数代表连接数据库的指定路径（死记）
              * jdbc:mysql://数据库服务器的IP地址/主机名称：端口号/数据库名称？参数配置

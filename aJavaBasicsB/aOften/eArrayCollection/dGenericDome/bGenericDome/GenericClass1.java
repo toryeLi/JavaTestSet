@@ -3,7 +3,7 @@ package aOften.eArrayCollection.dGenericDome.bGenericDome;
 public class GenericClass1 {
     public static void main(String[] args){
         BaseDao<String> stringBaseDao = new BaseDao<>();
-        stringBaseDao.get(11F, "AAA")
+        stringBaseDao.get(11F, "AAA");
     }
 }
 class BaseDao<T>{
