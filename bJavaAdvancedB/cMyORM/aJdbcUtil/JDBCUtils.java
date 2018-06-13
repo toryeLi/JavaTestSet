@@ -19,5 +19,6 @@ import cMyORM.aJdbcUtil.enums.DriverInfoEnum;
 public class JDBCUtils {
     public static void main(String[] args){
         System.out.println(DriverInfoEnum.DRIVER_CLASS.getInfo());
+        System.out.println(DriverInfoEnum.PASSWORD.getInfo());
     }
 }

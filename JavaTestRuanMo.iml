@@ -10,6 +10,7 @@
       <sourceFolder url="file://$MODULE_DIR$/aJavaBasicsB" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/bJavaAdvancedA" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/bJavaAdvancedB" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/resources" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />

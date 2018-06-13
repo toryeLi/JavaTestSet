@@ -34,11 +34,11 @@
    3.3 XML深入： cXmlTest
  4 bJavaAdvancedB  java语言进阶（二）
   4.1 mysql
-  4.2 JdbcTest：JDBC常用增删改查操作
-  4.3 cMyORM:手写ORM模拟hibernate
+  4.2 JDBC常用增删改查操作 : JdbcTest
+  4.3 手写ORM模拟hibernate : cMyORM
     4.3.1 数据连接过程的源码剖析及jdbc操作工具封装雏形 aJdbcUtil
     4.3.2 完成对象与数据库SQL语句映射持久化操作   bJdbcUtil
-    4.3.3 ORM加入自定义注解，编写DELETE方法，关联自定义异常 cJdbcUtil
+    4.3.3 ORM加入自定义注解，编写DELETE方法，关联自定义异常 cJdbcUtilAnnotaion
     4.3.4 封装ORM框架的CRUD操作，查询操作雏形实现  cJdbcUtil
     4.3.5 ORM框架的查询方法封装   dJdbcUtil
     4.3.6 ORM框架加入连接池配置和实现   eJdbcUtil

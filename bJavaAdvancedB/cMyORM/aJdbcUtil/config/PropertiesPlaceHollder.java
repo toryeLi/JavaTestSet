@@ -13,9 +13,8 @@ public class PropertiesPlaceHollder extends Properties {
     private static final long serialVersionUID = 7907113498148160479L;
     public PropertiesPlaceHollder(){
         String path = ConfigConstant.PROPERTIES_CONFIG_PATH.getPath();
-        System.out.println("PropertiesPlaceHollder:"+path);
         try {
-            this.getClass().getClassLoader();
+            //！！这里需要把 resources文件夹 右击--> Mark Directory as -->Resource Root,否则 in为null
             InputStream in = this.getClass().getClassLoader().getResourceAsStream(path);
             this.load(in);
         } catch (IOException e) {
