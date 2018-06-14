@@ -2,7 +2,7 @@ package cMyORM.cJdbcUtilAnnotion.test;
 
 import cMyORM.cJdbcUtilAnnotion.demo.login.LoginDAO;
 import cMyORM.cJdbcUtilAnnotion.demo.login.impl.LoginDAOImpl;
-import com.demo.entity.LoginInfo;
+import com.entity.LoginInfo;
 
 public class JdbcUtil2 {
     public static void main(String[] args){

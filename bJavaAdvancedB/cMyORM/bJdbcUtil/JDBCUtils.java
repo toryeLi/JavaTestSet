@@ -46,9 +46,8 @@ public class JDBCUtils {
     private final static void setParameters(PreparedStatement pst, Object... paramters) {
         try {
             if (paramters.length > 0) {
-                for (int i = 0; i <= paramters.length; i++) {
+                for (int i = 0; i < paramters.length; i++) {
                     pst.setObject(i + 1, paramters[i]);
-                    System.out.println("!!!!="+paramters[i]);
                 }
             }
         } catch (Exception e) {
@@ -66,10 +65,9 @@ public class JDBCUtils {
         int row = 0;
         try (Connection conn = getConnection();
              PreparedStatement preparedStatement = conn.prepareStatement(sql);) {
-            System.out.println("pr="+parametes.toString());
+            System.out.println("JDBCUtils_parametes,Set前: "+parametes);
+            System.out.println("JDBCUtils_sql语句为：" + sql);
             setParameters(preparedStatement, parametes);
-            System.out.println(sql);
-            System.out.println(parametes.toString());
             row = preparedStatement.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();

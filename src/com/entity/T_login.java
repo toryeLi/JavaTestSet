@@ -1,4 +1,4 @@
-package com.demo.entity;
+package com.entity;
 
 import com.annotantion.PK;
 

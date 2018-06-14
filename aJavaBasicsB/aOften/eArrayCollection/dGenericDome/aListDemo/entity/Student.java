@@ -1,5 +1,9 @@
 package aOften.eArrayCollection.dGenericDome.aListDemo.entity;
 
+/**
+ * Comparable 此接口强行对实现它的每个类的对象进行整体排序。
+ * 这种排序被称为类的自然排序，类的 compareTo 方法被称为它的自然比较方法。
+ */
 public class Student implements Comparable<Student> {
  private Integer id;
 

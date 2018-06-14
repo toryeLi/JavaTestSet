@@ -1,9 +1,6 @@
 package aOften.eArrayCollection.cMapAndSetDemo.aSetDemo;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import aOften.eArrayCollection.cMapAndSetDemo.aSetDemo.entity.Person;
 
 /**
  * 父接口Collection
@@ -11,6 +8,13 @@ import java.util.Set;
  */
 public class SetDemo {
     public static void main(String[] args){
+        Person aa=new Person();
+        aa.setId(1);
+        aa.setName("55");
+        Person  bb=new Person();
+        bb.setId(1);
+        bb.setName("55");
+        System.out.println(bb.equals(aa));
         /*
 		boolean add(E o);
 		boolean addAll(Collection c);
@@ -26,35 +30,35 @@ public class SetDemo {
 
 		boolean retainAll(Collection c);
 		*/
-        Set hashSet = new HashSet();
-        hashSet.add("A1");
-        hashSet.add("B2");
-        hashSet.add("B2");
-        hashSet.add("C3");
-        hashSet.add("D4");
-        hashSet.add(new Object());
-        hashSet.add(new Object());
-        hashSet.addAll(Arrays.asList("15","B6","C7"));
-        System.out.println(hashSet.contains("B6"));
-        System.out.println("个数："+hashSet.size());
-        System.out.println(hashSet);
-        //清空集合的元素
-//        hashSet.clear();
-        //判断集合是否含有元素
-        System.out.println(hashSet.isEmpty());
-        System.out.println(hashSet);
-        //使用迭代器输出这个集合中的每一个元素,使用迭代器速度是最快的，比增强for循环还要快
-        Iterator iterator = hashSet.iterator();
-        while (iterator.hasNext()) {
-            System.out.print(iterator.next()+" ");
-        }
-        System.out.println("\n\r");
-        //移除指定的元素
-        hashSet.remove("A1");
-        System.out.println(hashSet);
-        //移除指定集合中的所有元素
-        hashSet.removeAll(Arrays.asList("D4","B6","f1"));
-        System.out.println(hashSet);
+//        Set hashSet = new HashSet();
+//        hashSet.add("A1");
+//        hashSet.add("B2");
+//        hashSet.add("B2");
+//        hashSet.add("C3");
+//        hashSet.add("D4");
+//        hashSet.add(new Object());
+//        hashSet.add(new Object());
+//        hashSet.addAll(Arrays.asList("15","B6","C7"));
+//        System.out.println(hashSet.contains("B6"));
+//        System.out.println("个数："+hashSet.size());
+//        System.out.println(hashSet);
+//        //清空集合的元素
+////        hashSet.clear();
+//        //判断集合是否含有元素
+//        System.out.println(hashSet.isEmpty());
+//        System.out.println(hashSet);
+//        //使用迭代器输出这个集合中的每一个元素,使用迭代器速度是最快的，比增强for循环还要快
+//        Iterator iterator = hashSet.iterator();
+//        while (iterator.hasNext()) {
+//            System.out.print(iterator.next()+" ");
+//        }
+//        System.out.println("\n\r");
+//        //移除指定的元素
+//        hashSet.remove("A1");
+//        System.out.println(hashSet);
+//        //移除指定集合中的所有元素
+//        hashSet.removeAll(Arrays.asList("D4","B6","f1"));
+//        System.out.println(hashSet);
 
     }
 }

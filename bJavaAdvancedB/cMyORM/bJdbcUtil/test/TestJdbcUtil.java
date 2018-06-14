@@ -2,7 +2,7 @@ package cMyORM.bJdbcUtil.test;
 
 import cMyORM.bJdbcUtil.handler.HandlerTemplate;
 import cMyORM.bJdbcUtil.handler.mysql.MySqlHandler;
-import com.demo.entity.T_login;
+import com.entity.T_login;
 
 public class TestJdbcUtil {
     public static void main(String[] args){

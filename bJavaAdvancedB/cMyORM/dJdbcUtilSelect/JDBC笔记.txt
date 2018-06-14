@@ -1,0 +1,51 @@
+1、jdbc操作数据库
+   连接数据 => mysql
+               sqlserver
+               db2
+               oracle
+               .....
+   连接方式一致，但是连过程中的参数是变化。
+   jdbc.driver_class 通过使用者来配置相应的数据库连接驱动
+   解决方案： 使用属性配置文件来配置数据连接相关信息。
+   参照com.vip.jdbc.properties
+2、写SQL语句,每一个使用者都能够写出对应SQL语句。
+   让使用层面，只需要关心对象操作就OK？而不需要关心SQL的编写
+   解决方案: 可以通过类的反射机制来完成SQL语句
+             表名和对应操作类名称不一致？
+             列名和类中映射的属性名称不一致？
+             解决方案: 使用ORM思想
+                 关系模型          对象模型
+                    表                类名称
+                    列                属性名称
+                    类型              属性类型
+              XML文件：
+                  <property name="属性名称" column="列名" ></property>
+              使用注解:
+                  @Table 完成表名和类名映射配置
+                  @PK    标识为主键
+                  @Column 完成列名称和属性名称的映射
+    2.1 通过注解及反射构建SQL语句。
+3、在jdbc中封装2个通用方法处理增，删，改，查
+   executeUpdate => 增，删，改
+   executeQuery  => 查询
+
+4、包的解释
+   annotation 提供ORM注解
+   builder    SQL语句的构建
+   common     使用工具类
+   config     jdbc常量配置
+   constant   ORM框架常量配置
+   enums      框架中条件配置枚举，驱动信息枚举
+   exception  自定义ORM框架异常信息
+   handler    处理不同数据库中核心底层操作的实现
+   datasource
+	jdbc  获取连接
+        pool  使用数据库连接池
+
+   jdbc       封装jdbc操作的工具类
+   test       测试框架方法
+
+5、连接对象创建的优化
+   原本框架中每次操作数据都会开启一个新的连接对象，这个方法执行完成后，又会释放连接对象
+   创建1000连接对象，1000连接对象需要被GC回收=> 浪费时间（导致用户体验非常低）
+   mysql 300 - 700
