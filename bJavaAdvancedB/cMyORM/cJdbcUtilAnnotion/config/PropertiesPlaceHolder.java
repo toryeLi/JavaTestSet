@@ -13,7 +13,6 @@ public class PropertiesPlaceHolder extends Properties {
     private static final long serialVersionUID = 1L;
    public PropertiesPlaceHolder(){
        String path = ConfigConstant.PROPERTIES_CONFIG_PATH.getPath();
-       System.out.println("资源文件为："+path);
        try(InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(path);
        ){
            this.load(resourceAsStream);

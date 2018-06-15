@@ -1,14 +1,13 @@
 package cMyORM.dJdbcUtilSelect.demo.book.impl;
 
 import cMyORM.dJdbcUtilSelect.demo.book.BookDAO;
-import cMyORM.dJdbcUtilSelect.handler.HandlerTemplate;
 import cMyORM.dJdbcUtilSelect.handler.mysql.MySqlTemplateHandler;
 import com.entity.BookInfo;
 
 import java.util.List;
 
 public class BookDAOImpl implements BookDAO {
-    HandlerTemplate template=new MySqlTemplateHandler();
+    MySqlTemplateHandler template=new MySqlTemplateHandler();
     @Override
     public void save(BookInfo bookInfo) {
         template.save(bookInfo);
@@ -23,5 +22,15 @@ public class BookDAOImpl implements BookDAO {
     @Override
     public <T> List<T> queryForList(Class<T> claxx) {
         return template.queryForList(claxx);
+    }
+
+    @Override
+    public List<BookInfo> getBookInfos() {
+        return template.queryForList(BookInfo.class);
+    }
+
+    @Override
+    public List<BookInfo> getBookInfos(BookInfo condition) {
+        return template.queryForList(BookInfo.class,condition);
     }
 }

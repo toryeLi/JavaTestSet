@@ -21,4 +21,6 @@ public interface BookDAO {
      * @return
      */
     <T> List<T> queryForList(Class<T> claxx);
+    List<BookInfo> getBookInfos();
+    List<BookInfo> getBookInfos(BookInfo condition);
 }

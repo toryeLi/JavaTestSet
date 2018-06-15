@@ -35,7 +35,7 @@ public class SqlBuilder {
         }
         sqlBuilder.append(" FROM ").append(tableName);
 
-        System.out.println(sqlBuilder);
+       // System.out.println(sqlBuilder);
         return sqlBuilder.toString();
     }
 
