@@ -3,18 +3,21 @@ package cMyORM.dJdbcUtilSelect.handler.mysql;
 import cMyORM.dJdbcUtilSelect.builder.SqlBuilder;
 import cMyORM.dJdbcUtilSelect.exception.MyOrmException;
 import cMyORM.dJdbcUtilSelect.handler.HandlerTemplate;
-import cMyORM.dJdbcUtilSelect.jdbc.JDBCUtils;
+import cMyORM.dJdbcUtilSelect.jdbc.JDBCUtils5;
 import com.annotantion.Colum;
 import com.annotantion.PK;
 import com.annotantion.Table;
 import com.common.ArrayUtils;
 import com.constant.ConfigConstant;
+import com.constant.SearchMode;
 import com.constant.Sqlconstant;
-import com.enums.SearchMode;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
-import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -35,7 +38,6 @@ public class MySqlTemplateHandler extends HandlerTemplate {
         //拼接SQL语句
         sqlBuilder.append("INSERT INTO ").append(tableName).append("(");
         Field[] fields = aClass.getDeclaredFields();
-
         if (fields != null && fields.length > 0) {
             // 实例化用于保存参数列表的集合
             parameterList = new ArrayList<Object>();
@@ -43,8 +45,11 @@ public class MySqlTemplateHandler extends HandlerTemplate {
                 Field field = fields[i];
                 // 获取所有的字段名称默认就是属性名称
                 String fieldName = field.getName().toUpperCase();
-
                 if ("serialVersionUID".equalsIgnoreCase(fieldName)) {
+                    continue;
+                }
+                PK pk = field.getAnnotation(PK.class);
+                if (pk != null) {
                     continue;
                 }
                 // 判断是否存在Column注解配置
@@ -86,7 +91,8 @@ public class MySqlTemplateHandler extends HandlerTemplate {
 
         }
         // 调用执行数据库数据持久化的工具方法
-        JDBCUtils.executeUpdate(sqlBuilder.toString(), parameterList.toArray());
+
+        JDBCUtils5.executeUpdate(sqlBuilder.toString(), parameterList.toArray());
 
     }
 
@@ -141,7 +147,7 @@ public class MySqlTemplateHandler extends HandlerTemplate {
         } catch (Exception e) {
             throw new MyOrmException("通过主键删除对象的时候出现异常,信息为:" + e.getMessage());
         }
-        return JDBCUtils.executeUpdate(sqlBuilder.toString(), pkValue);
+        return JDBCUtils5.executeUpdate(sqlBuilder.toString(), pkValue);
     }
 
     /**
@@ -194,7 +200,7 @@ public class MySqlTemplateHandler extends HandlerTemplate {
         } catch (Exception e) {
             throw new MyOrmException("添加删除添加的时候出现异常，异常信息为：" + e.getMessage(), e);
         }
-        return JDBCUtils.executeUpdate(sql, parameters.toArray());
+        return JDBCUtils5.executeUpdate(sql, parameters.toArray());
     }
 
     /**
@@ -237,7 +243,7 @@ public class MySqlTemplateHandler extends HandlerTemplate {
                 stringBuffer.deleteCharAt(stringBuffer.length() - 1).append(" WHERE ").append(pkName).append("=?");
                 parameters.add(pkValue);
                 String sqlStr = stringBuffer.toString();
-                return JDBCUtils.executeUpdate(sqlStr, parameters.toArray());
+                return JDBCUtils5.executeUpdate(sqlStr, parameters.toArray());
             } else {
                 System.out.println("主键值为null,没有更新任何数据");
             }
@@ -270,8 +276,10 @@ public class MySqlTemplateHandler extends HandlerTemplate {
             throw new MyOrmException("添加更新条件的时候出现异常，异常信息为："+ex.getMessage());
         }
 
-        return JDBCUtils.executeUpdate(sqlBuilder.toString(),parmeters.toArray());
+        return JDBCUtils5.executeUpdate(sqlBuilder.toString(),parmeters.toArray());
     }
+
+
 
     /**
      * 返回UPDATE语句，不带条件
@@ -353,6 +361,49 @@ public class MySqlTemplateHandler extends HandlerTemplate {
     }
 
     /**
+     * 根据主键，返回单个实体类对象
+     * @param clazz
+     * @param id
+     * @param <T>
+     * @return
+     * @throws MyOrmException
+     */
+    @Override
+    public <T> T queryForObject(Class<T> clazz, Serializable id) throws MyOrmException {
+      //获取类中所有定义的字段
+        Field[] fields=clazz.getDeclaredFields();
+        T entity=null;
+
+            if (ArrayUtils.isNotEmpty(fields)) {
+                try {
+                entity = clazz.newInstance();
+                } catch (Exception e) {
+                    throw new MyOrmException("类没有空的构造函数，实例化对象失败");
+                }
+                for (int i = 0; i < fields.length; i++) {
+                    Field field=fields[0];
+                    PK pk = field.getAnnotation(PK.class);
+                    if (pk != null) {
+                        try {
+                            field.setAccessible(true);
+                            field.set(entity,id);
+                        } catch (IllegalAccessException e) {
+                          throw new MyOrmException(field.getName()+"字段赋值的时候报错，报错信息"+e.getMessage());
+                        }
+                        break;
+                    }
+                }
+                List<T> ts = queryForList(clazz,entity, SearchMode.EQ);
+                if (ts != null) {
+                    entity=ts.get(0);
+                }
+            }
+
+
+
+      return entity;
+    }
+    /**
      * 查询表中所有字段信息
      * @param clazz 要查询的表
      * @param <T>
@@ -363,7 +414,7 @@ public class MySqlTemplateHandler extends HandlerTemplate {
         List<T> list = new ArrayList<>();
         String sql=SqlBuilder.proccesQuerySQL(clazz);
         //调用查询方法
-        List<Map<String, Object>> query = JDBCUtils.executeQuery(sql);
+        List<Map<String, Object>> query = JDBCUtils5.executeQuery(sql);
         //判断是否为空
         if (ArrayUtils.isNotEmpty(query.toArray())) {
             for (int i = 0; i < query.size(); i++) {
@@ -413,6 +464,16 @@ public class MySqlTemplateHandler extends HandlerTemplate {
         }
         return list;
     }
+
+    /**
+     * 查询带条件的SQL语句
+     * @param clazz
+     * @param condition
+     * @param mode
+     * @param <T>
+     * @return
+     * @throws MyOrmException
+     */
     @Override
     public <T> List<T> queryForList(Class<T> clazz, T condition, SearchMode mode) throws MyOrmException {
         // 定义返回封装的对象集合
@@ -423,7 +484,7 @@ public class MySqlTemplateHandler extends HandlerTemplate {
 
         String sql = SqlBuilder.proccessQuerySQLForCondition(clazz, condition, parameters, mode);
         // 调用查询方法
-        List<Map<String, Object>> query = JDBCUtils.executeQuery(sql, parameters.toArray());
+        List<Map<String, Object>> query = JDBCUtils5.executeQuery(sql, parameters.toArray());
         //判断是否为空
         if (ArrayUtils.isNotEmpty(query.toArray())) {
             for (int i = 0; i < query.size(); i++) {
@@ -452,12 +513,12 @@ public class MySqlTemplateHandler extends HandlerTemplate {
                                 field.setAccessible(true);
                                 try {
                                     // 判断字段类型
-                                    Class<?> fieldTypeClass = field.getType();
-                                    if (fieldTypeClass == Double.class) {
-                                        BigDecimal value = (BigDecimal) columnValue;
-                                        field.set(instance, value.doubleValue());
-                                        break;
-                                    }
+                                   // Class<?> fieldTypeClass = field.getType();
+//                                    if (fieldTypeClass == Double.class) {
+//////                                        BigDecimal value = (BigDecimal) columnValue;
+//////                                        field.set(instance, value.doubleValue());
+//////                                        break;
+//////                                    }
                                     // 设置字段的值
                                     field.set(instance, columnValue);
                                 } catch (Exception e) {

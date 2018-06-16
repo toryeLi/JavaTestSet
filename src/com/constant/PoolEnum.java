@@ -1,6 +1,6 @@
-package com.enums;
+package com.constant;
 
-import cMyORM.cJdbcUtilAnnotion.config.PropertiesPlaceHolder;
+import cMyORM.dJdbcUtilSelect.config.PropertiesConfiguration;
 
 /**
  * 获取连接池配置
@@ -12,8 +12,8 @@ public enum PoolEnum {
     INITIAL_SIZE {
         @Override
         public String getInfo() {
-            return new PropertiesPlaceHolder().getProperty("initialsize");
-
+          //  return new PropertiesPlaceHolder().getProperty("initialsize");
+            return PropertiesConfiguration.getInstance().getProperty("initialsize");
         }
     },
     /**
@@ -22,7 +22,7 @@ public enum PoolEnum {
     INCREASE_SIZE {
         @Override
         public String getInfo() {
-            return new PropertiesPlaceHolder().getProperty("increasesize");
+            return PropertiesConfiguration.getInstance().getProperty("increasesize");
         }
     },
     /**
@@ -31,7 +31,7 @@ public enum PoolEnum {
     MAX_SIZE {
         @Override
         public String getInfo() {
-            return new PropertiesPlaceHolder().getProperty("maxsize");
+           return PropertiesConfiguration.getInstance().getProperty("maxsize");
         }
     },
     /**
@@ -41,7 +41,7 @@ public enum PoolEnum {
     {
         @Override
         public String getInfo() {
-            return new PropertiesPlaceHolder().getProperty("timeout");
+            return PropertiesConfiguration.getInstance().getProperty("timeout");
         }
     };
 

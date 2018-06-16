@@ -49,3 +49,10 @@
    原本框架中每次操作数据都会开启一个新的连接对象，这个方法执行完成后，又会释放连接对象
    创建1000连接对象，1000连接对象需要被GC回收=> 浪费时间（导致用户体验非常低）
    mysql 300 - 700
+   ================================
+6  ThreadLocal线程安全的原因是：内部使用map集合，map集合将当前线程为key.
+    事务要保证在同一个线程中，所以将当前线程作为key绑定到map集合中
+    ThreadLocalMap 是 ThreadLocal类的内部类，而 Entry是ThreadLocalMap的内部类，Entry是一个弱引用对象，
+    弱引用对象（WeakReference）的特点：只有该对象使用完成，不管jvm内存是否消耗完，GC会及时回收。
+
+   static class Entry extends WeakReference

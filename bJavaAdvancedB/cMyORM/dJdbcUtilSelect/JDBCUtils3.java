@@ -1,6 +1,6 @@
 package cMyORM.dJdbcUtilSelect;
 
-import com.enums.DriverInfoEnum;
+import com.constant.DriverInfoEnum;
 
 import java.sql.*;
 import java.util.ArrayList;

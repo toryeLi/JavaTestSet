@@ -3,7 +3,7 @@ package cMyORM.dJdbcUtilSelect.builder;
 import cMyORM.dJdbcUtilSelect.exception.MyOrmException;
 import com.common.ArrayUtils;
 import com.common.ReflectUtil;
-import com.enums.SearchMode;
+import com.constant.SearchMode;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -40,7 +40,7 @@ public class SqlBuilder {
     }
 
     /**
-     * 构建一条带条件的SQL语句
+     * 构建一条带条件的SQL语句,注意：1 排除主键 为条件  2 如果属性为值类型，请给该属性
      * @param clazz
      * @param condition
      * @param parameters
@@ -63,7 +63,7 @@ public class SqlBuilder {
         Field[] fields = conditionClass.getDeclaredFields();
         if (ArrayUtils.isNotEmpty(fields)) {
             //追加WHERE条件
-            sqlBuilder.append(" WHERE");
+            sqlBuilder.append(" WHERE ");
             for (int i = 0; i < fields.length; i++) {
                 Field field=fields[i];
                 String columnName = ReflectUtil.getFieldMappingName(field);
@@ -87,10 +87,12 @@ public class SqlBuilder {
             }
             sqlBuilder.delete(sqlBuilder.lastIndexOf(" AND "),sqlBuilder.length()-1);
         }
-        System.out.println(sqlBuilder);
+        System.out.println(SqlBuilder.class.getName()+":" +sqlBuilder.toString());
         return sqlBuilder.toString().trim();
     }
-
+public static <T> String proccessQuerySQLForPK(Class<T> tClass){
+        return null;
+}
     private static String patternMode(SearchMode mode){
         String patternChar=null;
         switch (mode){

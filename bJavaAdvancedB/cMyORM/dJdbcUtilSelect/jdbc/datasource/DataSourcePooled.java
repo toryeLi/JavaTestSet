@@ -1,8 +1,8 @@
 package cMyORM.dJdbcUtilSelect.jdbc.datasource;
 
 import cMyORM.dJdbcUtilSelect.exception.MyOrmException;
-import com.enums.DriverInfoEnum;
-import com.enums.PoolEnum;
+import com.constant.DriverInfoEnum;
+import com.constant.PoolEnum;
 
 import java.sql.Connection;
 import java.sql.Driver;
@@ -14,6 +14,7 @@ import java.util.Vector;
  * 数据源连接池类
  */
 public class DataSourcePooled extends AbstractDataSourcePooled {
+    private int i;//用这个来测试是否有数据混乱，也就是线程安全的情况发生
     //////////连接池的默认属性////////////
     private int initialSize = 3;//初始化连接数
     private int increaseSize = 5;//连接增长数
@@ -67,12 +68,16 @@ public class DataSourcePooled extends AbstractDataSourcePooled {
     public DataSourcePooled() {
         initial();
     }
-
+    /**
+     * 是否没有被占用 且是否有效
+     *
+     * @return
+     */
     @Override
     public PooledConnection getConnection() {
         //审核：是否没有被占用 且是否有效
         PooledConnection connection = null;
-        synchronized (lock) {
+      synchronized (lock) {
 
             if (pooledList.size() == 0) {
                 System.out.println("获取连接中连接失败，没有任何连接对象"+pooledList.size()+"开始创建连接：");
@@ -99,36 +104,37 @@ public class DataSourcePooled extends AbstractDataSourcePooled {
         return connection;
     }
 
-        /**
-         * 是否没有被占用 且是否有效
-         *
-         * @return
-         */
-        private synchronized PooledConnection getRealConnection () {
-            for (PooledConnection conn : pooledList) {
-                //判断池中是否有空闲的连接对象
-                if (!conn.isBusy()) {
-                    Connection connection = conn.getConnection();
-                    try {
-                        //发送一个指令给数据库 看是否收到回应
-                        if (!connection.isValid(timeOut)) {
-                            //连接失败了
-                            connection = DriverManager.getConnection(DriverInfoEnum.URL.getInfo(),
-                                    DriverInfoEnum.USERNAME.getInfo(), DriverInfoEnum.PASSWORD.getInfo());
-                            //把失败的连接补回来
-                            conn.setConnection(connection);
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
+    /**
+     * 是否没有被占用 且是否有效
+     *
+     * @return
+     */
+    private synchronized PooledConnection getRealConnection () {
+        i++;
+        for (PooledConnection conn : pooledList) {
+            //判断池中是否有空闲的连接对象
+            if (!conn.isBusy()) {
+                Connection connection = conn.getConnection();
+                try {
+                    //发送一个指令给数据库 看是否收到回应
+                    if (!connection.isValid(timeOut)) {
+                        //连接失败了
+                        connection = DriverManager.getConnection(DriverInfoEnum.URL.getInfo(),
+                                DriverInfoEnum.USERNAME.getInfo(), DriverInfoEnum.PASSWORD.getInfo());
+                        //把失败的连接补回来
+                        conn.setConnection(connection);
                     }
-                    //已经被占用了
-                    conn.setBusy(true);
-                    return conn;
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
+                //已经被占用了
+                conn.setBusy(true);
+                System.out.println("===========================" + i+"===这个数字有混乱，就证明存在线程安全的问题");
+                return conn;
             }
-            return null;
         }
-
+        return null;
+    }
         @Override
         protected void createConnection ( int count){
             //池中的连接数+新增连接数 不能大于连接池中最大的连接数

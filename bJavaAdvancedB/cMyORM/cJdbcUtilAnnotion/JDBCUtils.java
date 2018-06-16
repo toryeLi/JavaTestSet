@@ -1,7 +1,7 @@
 package cMyORM.cJdbcUtilAnnotion;
 
 import cMyORM.cJdbcUtilAnnotion.exception.MyOrmException;
-import com.enums.DriverInfoEnum;
+import com.constant.DriverInfoEnum;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

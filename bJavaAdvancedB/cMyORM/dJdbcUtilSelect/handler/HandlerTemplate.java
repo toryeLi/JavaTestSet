@@ -1,8 +1,9 @@
 package cMyORM.dJdbcUtilSelect.handler;
 
 import cMyORM.dJdbcUtilSelect.exception.MyOrmException;
-import com.enums.SearchMode;
+import com.constant.SearchMode;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -35,6 +36,16 @@ public abstract <T> int update(T entity) throws MyOrmException;
  * 定义根据用户指定条件修改表中指定的字段
  */
 public abstract <T> int update(T entity,T condition)throws MyOrmException;
+
+    /**
+     * 根据主键id 查询某一行数据
+     * @param clazz
+     * @param id
+     * @param <T>
+     * @return
+     * @throws MyOrmException
+     */
+    public abstract <T> T queryForObject(Class<T> clazz, Serializable id) throws MyOrmException;
 
     /**
      * 查询表中所有字段信息
